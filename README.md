@@ -1,20 +1,35 @@
 # IBM In-Database Analytics for R - Extensions
 
 This package contains extensions to the [ibmdbR](https://cran.r-project.org/web/packages/ibmdbR/index.html). In addition to the push-down functionality provided by *ibmdbR*, it allows for the push-down of geo-spatial functions into the database.
- 
+
 ## Installation
 
-To install, you first need to install the packages *ibmdbR* and *sp* from CRAN (if they are not installed yet), e.g. by
+To install ibmdbRXt, you first need to install the packages *ibmdbR* and *sp* from CRAN (if they are not installed yet), e.g. by
 
     install.packages('ibmdbR')
     install.packages('sp')
+    
+To automatically install all dependent R packages use:
 
+	install.packages('ibmdbR', dependencies = TRUE)
+	install.packages('sp', dependencies = TRUE)
+	
+Please watch for errors during the package installation (exit code != 0) and ensure that the all R package dependencies were installed correctly. 
+You can find a short installation guide for the *sp* R package on dashDB Local / CentOS in the next section (although ibmdbRXt only uses a subset of functions of the *sp* package).
 
-
-If these two packages and their dependencies installed correctly, you can install *ibmdbRXt*
+If these two packages and their dependencies were installed correctly, you can install *ibmdbRXt*
 
     install.packages('https://github.com/ibmdbanalytics/ibmdbRXt/blob/master/ibmdbRXt_1.47.1.tar.gz?raw=T',repos=NULL)
-    
+
+### Installation of the *sp* package dependencies on dashDB Local / CentOS:
+
+The *sp* package requires the R packages *rgdal* and *rgeos*, which have dependencies to the *geos*, *proj* and *gdal* libraries.
+
+A convenient method for installing the required libraries in CentOS 7 is using yum with a current EPEL repository:  
+	
+	su -c 'rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm'
+	yum -y install gdal gdal-devel proj proj-devel proj-nad proj-epsg geos geos-devel
+
 ## Basic Steps
 
 ### Loading the sample data
